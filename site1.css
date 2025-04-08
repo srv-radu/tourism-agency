@@ -7,6 +7,7 @@
 body {
     font-family: Arial, sans-serif;
     background-image: url("main_excursii/bg5.jpg");
+    color: #333;
 }
 
 header {
@@ -66,7 +67,7 @@ main {
 }
 
 .intro p {
-    font-size: 18px;
+    font-size: 19px;
     color: #666;
 }
 
