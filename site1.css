@@ -8,7 +8,6 @@ body {
     font-family: Arial, sans-serif;
     background-image: url("main_excursii/bg5.jpg");
     color: #333;
-
 }
 
 header {
@@ -82,7 +81,8 @@ main {
 }
 
 .product-item {
-    background-color: #fff;
+    background-color: #d3d3d3;
+    opacity: 85%;
     border: 1px solid #ddd;
     border-radius: 10px;
     padding: 20px;
@@ -136,7 +136,7 @@ header:hover {
 /* Mobile */
 @media (max-width: 600px) {
     body {
-        background-color: #a9dba9;
+        background-color: #3aa32e; /* Light Green */
     }
 
     header {
@@ -186,7 +186,7 @@ header:hover {
 
 @media (min-width: 1024px) {
     body {
-        background-color: #f4f4f4; 
+        background-color: #3aa32e; /* Light Green */
     }
 
     .product-list {
@@ -199,8 +199,8 @@ header:hover {
     .product-alt1{
         display: none;
     }
-
 }
+
 .product-item:hover {
     transform: translateY(-10px) scale(1.05); 
 }
