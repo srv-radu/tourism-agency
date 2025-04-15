@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vacation Booking</title>
+  <link rel="stylesheet" href="ex4.css">
+  <style>
+    body {
+      margin: 0;
+      padding-top: 80px;
+      background-color: rgb(198, 198, 198);
+      font-family: Arial, sans-serif;
+      color: #333;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: 80px;
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      transition: background-color 0.3s ease;
+    }
+
+    header .logo h1 {
+      margin-left: 20px;
+    }
+
+    header nav ul {
+      list-style: none;
+      display: flex;
+    }
+
+    header nav ul li {
+      margin-right: 20px;
+    }
+
+    header nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    header nav ul li a:hover {
+      text-decoration: underline;
+    }
+
+    header:hover {
+      background-color: #6e6e6e;
+    }
+
+    .container {
+      max-width: 1200px;
+      width: 95%;
+      margin: auto;
+    }
+
+    .slider-wrapper {
+      position: relative;
+      overflow: visible;
+      margin-top: 20px;
+    }
+
+    .slide-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 50px;
+      height: 50px;
+      background-color: #000;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      font-size: 2rem;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    #prev-slide {
+      left: 10px;
+    }
+
+    #next-slide {
+      right: 10px;
+    }
+
+    .image-list {
+      display: flex;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      gap: 18px;
+      padding: 20px 0;
+      list-style: none;
+    }
+
+    .image-item {
+      flex: 0 0 auto;
+      width: 325px;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .slider-scrollbar {
+      height: 24px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .scrollbar-track {
+      background: #ccc;
+      width: 100%;
+      height: 2px;
+      border-radius: 4px;
+      position: relative;
+    }
+
+    .scrollbar-thumb {
+      position: absolute;
+      background: #000;
+      top: 0;
+      bottom: 0;
+      width: 50%;
+      height: 100%;
+      cursor: grab;
+      border-radius: inherit;
+    }
+
+    .scrollbar-thumb:active {
+      cursor: grabbing;
+      height: 8px;
+      top: -2px;
+    }
+
+    .scrollbar-thumb::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: -10px;
+      bottom: -10px;
+    }
+
+    .content {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 40px 0;
+      gap: 40px;
+    }
+
+    .left-section,
+    .right-section {
+      flex: 1;
+      background-color: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .left-section h1 {
+      color: #0077cc;
+      margin-top: 0;
+    }
+
+    .left-section p {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    form label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    form input,
+    form select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    form button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #0077cc;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    form button:hover {
+      background-color: #005fa3;
+    }
+
+    @media (max-width: 900px) {
+      .content {
+        flex-direction: column;
+      }
+
+      .image-item {
+        width: 90%;
+        height: auto;
+      }
+
+      .slide-button {
+        display: none;
+      }
+
+      .slider-scrollbar .scrollbar-thumb {
+        width: 20%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <h1>Prima Tourism</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Acasă</a></li>
+        <li><a href="despre.html">Despre Noi</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="slider-wrapper">
+      <button id="prev-slide" class="slide-button">⇐</button>
+      <ul class="image-list" id="imageList">
+        <img class="image-item" src="Excursie4/t1.jpg" alt="img-1" />
+        <img class="image-item" src="Excursie4/t2.jpg"alt="img-2" />
+        <img class="image-item" src="Excursie4/t3.webp" alt="img-3" />
+        <img class="image-item" src="Excursie4/t4.jpg" alt="img-4" />
+        <img class="image-item" src="Excursie4/t5.jpg" alt="img-5" />
+        <img class="image-item" src="Excursie4/t6.jpg" alt="img-6" />
+        <img class="image-item" src="Excursie4/t7.webp" alt="img-7" />
+        <img class="image-item" src="Excursie4/t8.jpg" alt="img-8" />
+        <img class="image-item" src="Excursie4/t9.jpg" alt="img-9" />
+        <img class="image-item" src="Excursie4/t10.jpg" alt="img-10" />
+      </ul>
+      <button id="next-slide" class="slide-button">⇒</button>
+    </div>
+
+    <div class="slider-scrollbar">
+      <div class="scrollbar-track">
+        <div class="scrollbar-thumb"></div>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="left-section">
+        <h1>⛰️Traseul Transfagarasan</h1>
+        <br>
+        <p><strong>Descoperă magia Transfagarasanului într-o excursie de neuitat! Te invităm să evadezi din cotidian și să pătrunzi în unul dintre cele mai spectaculoase locuri din lume – un tărâm al apelor, al păsărilor exotice și al liniștii absolute. Fie că ești pasionat de natură, fotografie, gastronomie locală sau relaxare, această experiență este exact ce cauți.</strong></p>
+        <br>
+        <p><strong>✔ Cascada Bâlea</strong> – una dintre cele mai frumoase cascade în trepte din România, ușor accesibilă printr-o scurtă plimbare.</p>
+        <p><strong>✔ Lacul Bâlea </strong> – un lac glaciar spectaculos situat la 2.034 m altitudine, ideal pentru poze, relaxare și chiar o gustare la cabanele din zonă.</p>
+        <p><strong>✔ Barajul Vidraru</strong> - o construcție impresionantă pe râul Argeș, cu o priveliște panoramică asupra lacului și munților din jur.</p>
+        <p><strong>✔ Cetatea Poenari </strong> – cunoscută drept „adevărata cetate a lui Vlad Țepeș”, se urcă peste 1.400 de trepte, dar merită pentru istorie și peisaj.</p>
+        <p><strong>✔ Cabana Capra </strong> – o oprire populară pentru o pauză de cafea sau o priveliște de vis spre vârfurile muntoase.</p>
+        <p><strong>✔ Valea Caprei & Valea Argeșului  </strong> – zone pitorești de pe traseu, perfecte pentru opriri scurte și fotografii spectaculoase.</p>
+        <br>
+        <h2>🎒 Include:</h2>
+        <br>
+        <p>▶️Transport tur-retur cu autocar modern, dotat cu aer condiționat</p>
+        <p>▶️Ghid turistic specializat</p>
+        <p>▶️Opriri la cele mai importante atracții</p>
+        <p>▶️Timp liber pentru poze și relaxare</p>
+        <p>▶️Suveniruri și materiale informative oferite de agenție</p>
+        <p>▶️Experiente de neuitat!</p>
+        <br>
+        <p><strong>📆 Durată: 2 zile</strong></p>
+        <p><strong>📍 Punct de plecare: Parcarea vizavi de CC Zity Mall</strong></p>
+        <br>
+        <p>Hai cu noi într-o aventură care îmbină legenda, istoria și frumusețea peisajelor!</p>
+        <p>Rezervă acum locul tău! Mai multe informatii dupa rezervarea locurilor.</p>
+        <br>
+        <h3>Pret:</h3> <p>199€ per loc</p>
+      </div>
+
+      <div class="right-section">
+        <form>
+          <label for="name">Nume:</label>
+          <input type="text" id="name" name="name" required>
+
+          <label for="surname">Prenume:</label>
+          <input type="text" id="surname" name="surname" required>
+
+          <label for="address">Adresa:</label>
+          <input type="text" id="address" name="address">
+
+          <label for="number">Telefon:</label>
+          <input type="tel" id="number" name="number" required>
+
+          <label for="seats">Numar de locuri:</label>
+          <input type="number" id="seats" name="seats" min="1" required>
+
+          <label for="departure">Ziua plecarii:</label>
+          <select id="departure" name="departure" required>
+            <option value="">Selectati o zi</option>
+            <option value="1">25.05.2025</option>
+            <option value="2">31.05.2025</option>
+            <option value="3">06.06.2025</option>
+          </select>
+
+          <button type="submit">Confirmați</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const imageList = document.getElementById('imageList');
+    const prevButton = document.getElementById('prev-slide');
+    const nextButton = document.getElementById('next-slide');
+
+    prevButton.addEventListener('click', () => {
+      imageList.scrollBy({
+        left: -350,
+        behavior: 'smooth'
+      });
+    });
+
+    nextButton.addEventListener('click', () => {
+      imageList.scrollBy({
+        left: 350,
+        behavior: 'smooth'
+      });
+    });
+  </script>
+
+</body>
+</html>
